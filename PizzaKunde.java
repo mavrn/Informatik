@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class PizzaKunde {
+public class PizzaKundeK {
 
     //Statische Variablen
     static final String[][] produktNamen = {
@@ -23,8 +23,8 @@ public class PizzaKunde {
     static int kundenAnzahl = 0; //Gesamtanzahl der erstellten Kunden
     static int kundenNummer = 0; //Identifikationsnummer des bestellenden Kunden
     static DecimalFormat geldFormat = new DecimalFormat("#.##");
-
-    static PizzaKunde[] PizzaKunden = new PizzaKunde[100]; //Liste von erstellten Kunden
+    
+    static PizzaKundeK[] PizzaKunden = new PizzaKundeK[100]; //Liste von erstellten Kunden
 
     //Kundenabhängige Variablen
     double summe = 0; //Summe(Geld) der Bestellung
@@ -39,7 +39,7 @@ public class PizzaKunde {
 
 
     //Konstruktor für das Objekt PizzaKunde
-    PizzaKunde(String name, double geld) {
+    PizzaKundeK(String name, double geld) {
         this.name = name;
         this.geld = geld;
         this.favorite = new int[]{-1, -1, -1}; //Der Kunde hat bei Erstellung keine Favoriten
@@ -97,7 +97,7 @@ public class PizzaKunde {
         if (istKunde(textEingabe)) System.out.println("Willkommen zurück, " + PizzaKunden[kundenNummer].name + "!");
         else { //Wenn der Benutzer ein neuer Kunde ist
             kundenNummer = kundenAnzahl;  //Setze die kundenNummer ans Ende des Arrays
-            PizzaKunden[kundenNummer] = new PizzaKunde(textEingabe, 0.0); //Erstellung des Kunden
+            PizzaKunden[kundenNummer] = new PizzaKundeK(textEingabe, 0.0); //Erstellung des Kunden
             System.out.println("Willkommen " + PizzaKunden[kundenNummer].name + "!");
             System.out.println("Wie viel Geld haben Sie zur Verfügung?");
             PizzaKunden[kundenNummer].geld = intIn();
@@ -143,7 +143,7 @@ public class PizzaKunde {
     void pizzaBestellung() {
 
         if (favorite[0] >= 0) System.out.println("[0] Das Übliche"); //Dieser Teil wird nur ausgegeben, wenn der Kunde einen Pizza-Favoriten hat
-        System.out.println("[1] Pizza Salami - 8,99€ \n[2] Pizza Funghi - 7,99€ \n[3] Pizza Margharita - 6,99€ \n[4] Pizza Quattro Stagioni - 8,99€\n[5] Pizza Speziale - 9,99€ \n[6] Auswahl abschließen\n");
+        System.out.println("[1] Pizza Salami - 8,99 Euro\n[2] Pizza Funghi - 7,99 Euro\n[3] Pizza Margharita - 6,99 Euro\n[4] Pizza Quattro Stagioni - 8,99 Euro\n[5] Pizza Speziale - 9,99 Euro\n[6] Auswahl abschließen\n");
 
         do {
             zahlEingabe = intIn() - 1; //-1 zur Korrektur der Eingabe auf den Index des Produkts
@@ -156,7 +156,7 @@ public class PizzaKunde {
             }
             else if (zahlEingabe!=5) { //Wenn der Kunde ein Produkt auswählt
                 System.out.println("Bitte geben Sie eine gültige Bestellung auf.");
-                }
+            }
         }
         while (zahlEingabe != 5); //Wiederhole, bis "Auswahl abschließen" gewählt wird
         System.out.println("Alles klar, ist das alles?");
@@ -167,7 +167,7 @@ public class PizzaKunde {
     //Bestellung eines Getränks
     void drinkBestellung() {
         if (favorite[1] >= 0) System.out.println("[0] Das Übliche"); //Dieser Teil wird nur ausgegeben, wenn der Kunde einen Getränk-Favoriten hat
-        System.out.println("[1] Wasser - 1,99€ \n[2] Cola - 2,50€ \n[3] Spezi - 2,75€ \n[4] Sprite - 2,25€\n[5] Fanta - 2,25€ \n[6] Auswahl abschließen\n");
+        System.out.println("[1] Wasser - 1,99 Euro \n[2] Cola - 2,50 Euro \n[3] Spezi - 2,75 Euro \n[4] Sprite - 2,25 Euro\n[5] Fanta - 2,25 Euro \n[6] Auswahl abschließen\n");
 
         do {
             zahlEingabe = intIn() - 1; //-1 zur Korrektur der Eingabe auf den Index des Produkts
@@ -194,7 +194,7 @@ public class PizzaKunde {
     //Bestellung einer Beilage
     void beilageBestellung() {
         if (favorite[2] >= 0) System.out.println("[0] Das Übliche"); //Dieser Teil wird nur ausgegeben, wenn der Kunde einen Beilagen-Favoriten hat
-        System.out.println("[1] Tomatensuppe - 3,99€ \n[2] Pizzabrot - 2,50€ \n[3] Pommes Frites - 2,99€ \n[4] Gemischter Salat - 5,50€\n[5] Caprese - 4,99€ \n[6] Auswahl abschließen\n");
+        System.out.println("[1] Tomatensuppe - 3,99 Euro\n[2] Pizzabrot - 2,50 Euro\n[3] Pommes Frites - 2,99 Euro\n[4] Gemischter Salat - 5,50 Euro\n[5] Caprese - 4,99 Euro\n[6] Auswahl abschließen\n");
 
         do {
             zahlEingabe = intIn() - 1; //-1 zur Korrektur der Eingabe auf den Index des Produkts
@@ -226,25 +226,27 @@ public class PizzaKunde {
             System.out.println("[1] Pizzas\n[2] Getränke\n[3] Beilagen & Vorspeisen\n[4] Festlegen");
             zahlEingabe = intIn();
             switch (zahlEingabe) {
-                case 1 -> {
+                case 1:
                     System.out.println("Welche Pizza ist Ihr Favorit?");
                     System.out.println("[1] Pizza Salami\n[2] Pizza Funghi\n[3] Pizza Margharita\n[4] Pizza Quattro Stagioni\n[5] Pizza Speziale");
                     favoritFestlegen(0); //Favorit festlegen für Kategorie 0 (Pizzen)
-                }
-
-                case 2 -> {
+                    break;
+                case 2:
                     System.out.println("Welches Getränk ist Ihr Favorit?");
                     System.out.println("[1] Wasser\n[2] Cola\n[3] Spezi\n[4] Sprite\n[5] Fanta");
                     favoritFestlegen(1); //Favorit festlegen für Kategorie 1 (Getränke)
-                }
-
-                case 3 -> {
+                    break;
+                case 3:
                     System.out.println("Welche Beilage ist Ihr Favorit?");
                     System.out.println("[1] Tomatensuppe\n[2] Pizzabrot\n[3] Pommes Frites\n[4] Gemischter Salat\n[5] Calprese");
                     favoritFestlegen(2); //Favorit festlegen für Kategorie 2 (Beilagen)
-                }
-                case 4 -> System.out.println("Okay! Das werden wir uns merken.");
-                default -> System.out.println("Bitte tätigen Sie eine gültige Auswahl.");
+                    break;
+                case 4:
+                    System.out.println("Okay! Das werden wir uns merken.");
+                    break;
+                default:
+                    System.out.println("Bitte tätigen Sie eine gültige Auswahl.");
+                    break;
             }
 
         }
@@ -263,18 +265,18 @@ public class PizzaKunde {
         zahlEingabe = 0;
     }
 
-    
+
     //Beenden der Bestellung, Ausgeben des Belegs, Speichern der Bestellung
     void bestellungEnde() {
         System.out.println("Vielen Dank für ihre Bestellung, ihre Auswahl ist:");
         for (int x = 0; x < 3; x++) { //Erstelle einen "Beleg" aus den bestellten Produkten
             for (int y = 0; y < 5; y++) {
                 if (produktAnzahl[x][y] > 0) {
-                    System.out.println(produktAnzahl[x][y] + "x " + produktNamen[x][y] + " - " + (produktPreise[x][y] * produktAnzahl[x][y]) + "€");
+                    System.out.println(produktAnzahl[x][y] + "x " + produktNamen[x][y] + " - " + (produktPreise[x][y] * produktAnzahl[x][y]) + " Euro");
                 }
             }
         }
-        System.out.println("Ihre Summe beträgt " + runden(summe) + "€. Drücken Sie Enter zum Bezahlen.");
+        System.out.println("Ihre Summe beträgt " + runden(summe) + " Euro. Drücken Sie Enter zum Bezahlen.");
         try {
             sc.nextLine();
         } catch (Exception ignored) {
@@ -284,7 +286,7 @@ public class PizzaKunde {
         letzteSumme = summe; //Lagern der Summe
         reset();
         istStammkunde = true;
-        System.out.println("Ihr neuer Kontostand ist " + runden(geld) + "€. Vielen Dank und bis zum nächsten Mal, " + name + "!");
+        System.out.println("Ihr neuer Kontostand ist " + runden(geld) + " Euro. Vielen Dank und bis zum nächsten Mal, " + name + "!");
     }
 
 
@@ -297,39 +299,49 @@ public class PizzaKunde {
             System.out.println("[1] Pizzas\n[2] Getränke\n[3] Beilagen/Vorspeisen\n[4] Favorit festlegen\n[5] Bezahlen\n[6] Restaurant verlassen");
             zahlEingabe = intIn(); //Eingabe einlesen
 
-            switch (zahlEingabe) {
+            switch (zahlEingabe) {//Wenn der Kunde seine letzte Bestellung wiederholen will
 
-                case 0 -> { //Wenn der Kunde seine letzte Bestellung wiederholen will
+                //Bestellungen oder Favoriten
+                case 0:
                     if (istStammkunde) {  //Und schon einmal da war (wenn nein, default)
                         summe = letzteSumme; //Setze Summe auf letzte Summe
                         produktAnzahl = deepCopy(letzteBestellung); //Und kopiere die letzte Bestellung unabhängig
-                        ordered=true;
+                        ordered = true;
                         System.out.println("Okay " + name + ", noch etwas dazu?"); //Kunde kann nun bezahlen oder etwas dazubestellen
                     }
-                }
-                //Bestellungen oder Favoriten
-                case 1 -> pizzaBestellung();
-                case 2 -> drinkBestellung();
-                case 3 -> beilageBestellung();
-                case 4 -> support();
+                    break;
+                case 1:
+                    pizzaBestellung();
+                    break;
+                case 2:
+                    drinkBestellung();
+                    break;
+                case 3:
+                    beilageBestellung();
+                    break;
+                case 4:
+                    support();
+                    break;
                 //Bezahlen
-                case 5 -> {
+                case 5:
                     if (geld < summe) { //Wenn der Kunde nicht genug Geld hat
                         System.out.println("Für diese Bestellung haben Sie leider nicht genug Geld zur Verfügung.");
-                        einzahlen();  }
-                    else if (ordered) { //Wenn der Kunde etwas bestellt hat
-                        bestellungEnde(); }
-                    else { //Wenn der Kunde nichts bestellt hat
+                        einzahlen();
+                    } else if (ordered) { //Wenn der Kunde etwas bestellt hat
+                        bestellungEnde();
+                    } else { //Wenn der Kunde nichts bestellt hat
                         System.out.println("Wollten Sie nicht zuerst etwas bestellen?");
-                        zahlEingabe=-2;  }
-                }
+                        zahlEingabe = -2;
+                    }
+                    break;
                 //Gehen
-                case 6 -> {
+                case 6:
                     System.out.println("Schade, vielleicht beim nächsten Mal!");
                     reset();
-                }
-
-                default -> System.out.println("Bitte wählen Sie eine gültige Option.");
+                    break;
+                default:
+                    System.out.println("Bitte wählen Sie eine gültige Option.");
+                    break;
             }
         }
         while (zahlEingabe != 5 && zahlEingabe != 6); //Solange bis der Kunde bezahlt oder geht
