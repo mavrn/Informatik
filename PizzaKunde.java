@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class PizzaKundeK {
+public class PizzaKunde {
 
     //Statische Variablen
     static final String[][] produktNamen = {
@@ -24,7 +24,7 @@ public class PizzaKundeK {
     static int kundenNummer = 0; //Identifikationsnummer des bestellenden Kunden
     static DecimalFormat geldFormat = new DecimalFormat("#.##");
     
-    static PizzaKundeK[] PizzaKunden = new PizzaKundeK[100]; //Liste von erstellten Kunden
+    static PizzaKunde[] PizzaKunden = new PizzaKunde[100]; //Liste von erstellten Kunden
 
     //Kundenabhängige Variablen
     double summe = 0; //Summe(Geld) der Bestellung
@@ -39,7 +39,7 @@ public class PizzaKundeK {
 
 
     //Konstruktor für das Objekt PizzaKunde
-    PizzaKundeK(String name, double geld) {
+    PizzaKunde(String name, double geld) {
         this.name = name;
         this.geld = geld;
         this.favorite = new int[]{-1, -1, -1}; //Der Kunde hat bei Erstellung keine Favoriten
@@ -97,7 +97,7 @@ public class PizzaKundeK {
         if (istKunde(textEingabe)) System.out.println("Willkommen zurück, " + PizzaKunden[kundenNummer].name + "!");
         else { //Wenn der Benutzer ein neuer Kunde ist
             kundenNummer = kundenAnzahl;  //Setze die kundenNummer ans Ende des Arrays
-            PizzaKunden[kundenNummer] = new PizzaKundeK(textEingabe, 0.0); //Erstellung des Kunden
+            PizzaKunden[kundenNummer] = new PizzaKunde(textEingabe, 0.0); //Erstellung des Kunden
             System.out.println("Willkommen " + PizzaKunden[kundenNummer].name + "!");
             System.out.println("Wie viel Geld haben Sie zur Verfügung?");
             PizzaKunden[kundenNummer].geld = intIn();
